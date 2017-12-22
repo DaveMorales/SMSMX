@@ -8,11 +8,8 @@ import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
 
 public interface MainActivityI {
 
-
     void onUpdateSMSListSuccess(MessageListResponse response);
 
-    void showLoading();
-
-    void hideLoading();
+    void onUpdateSMSListFailed(String error);
 
 }

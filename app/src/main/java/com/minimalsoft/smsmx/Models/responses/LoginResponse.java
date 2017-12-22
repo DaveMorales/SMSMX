@@ -73,6 +73,10 @@ public class LoginResponse {
         @Expose
         private int isAdmin;
 
+        @SerializedName("isSender")
+        @Expose
+        private int isSender;
+
         public int getIdUser() {
             return idUser;
         }
@@ -97,5 +101,12 @@ public class LoginResponse {
             this.isAdmin = isAdmin;
         }
 
+        public int getIsSender() {
+            return isSender;
+        }
+
+        public void setIsSender(int isSender) {
+            this.isSender = isSender;
+        }
     }
 }

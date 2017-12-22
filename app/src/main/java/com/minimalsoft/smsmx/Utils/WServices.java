@@ -1,5 +1,6 @@
 package com.minimalsoft.smsmx.Utils;
 
+import com.minimalsoft.smsmx.Models.requests.LoginRequest;
 import com.minimalsoft.smsmx.Models.requests.RegisterDeviceRequest;
 import com.minimalsoft.smsmx.Models.responses.LoginResponse;
 import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
@@ -29,10 +30,10 @@ public interface WServices {
     Call<MessageListResponse> updateSMSList(@Query("date") String date, @Query("limit") int limit, @Query("offset") int offset);
 
     @Headers({"Auth:Basic c21zTVg6c21zR2F0ZXdheTEyMyE=", "Content-Type:application/json"})
-    @GET("v1/auth/login")
-    Call<LoginResponse> login(@Body LoginResponse request);
+    @POST("v1/auth/login")
+    Call<LoginResponse> login(@Body LoginRequest request);
 
     @Headers({"Auth:Basic c21zTVg6c21zR2F0ZXdheTEyMyE=", "Content-Type:application/json"})
-    @GET("v1/config/registerDevice")
+    @POST("v1/config/registerDevice")
     Call<RegisterDeviceResponse> registerDevice(@Body RegisterDeviceRequest request);
 }

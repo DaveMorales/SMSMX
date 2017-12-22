@@ -1,7 +1,7 @@
 package com.minimalsoft.smsmx.Presenters;
 
-import com.minimalsoft.smsmx.Interactors.MainActivityInteractor;
-import com.minimalsoft.smsmx.Interactors.MainActivityInteractorI;
+import com.minimalsoft.smsmx.Interactors.MainInteractor;
+import com.minimalsoft.smsmx.Interactors.MainInteractorI;
 import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
 import com.minimalsoft.smsmx.Views.Activities.MainActivityI;
 
@@ -9,14 +9,14 @@ import com.minimalsoft.smsmx.Views.Activities.MainActivityI;
  * Created by David Morales on 11/1/17.
  */
 
-public class MainActivityPresenter implements MainActivityPresenterI {
+public class MainPresenter implements MainPresenterI {
 
     MainActivityI mainActivity;
-    MainActivityInteractorI mainActivityInteractor;
+    MainInteractorI mainActivityInteractor;
 
-    public MainActivityPresenter(MainActivityI mainActivity) {
+    public MainPresenter(MainActivityI mainActivity) {
         this.mainActivity = mainActivity;
-        mainActivityInteractor = new MainActivityInteractor(this);
+        mainActivityInteractor = new MainInteractor(this);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class MainActivityPresenter implements MainActivityPresenterI {
     @Override
     public void onUpdateSMSListSuccess(MessageListResponse response) {
 
-        mainActivity.hideLoading();
+        //mainActivity.hideLoading();
 
         if (response.getCode().equals("200")) {
             mainActivity.onUpdateSMSListSuccess(response);

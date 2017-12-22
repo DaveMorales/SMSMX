@@ -2,7 +2,6 @@ package com.minimalsoft.smsmx.Views.Activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -11,8 +10,8 @@ import com.github.jhonnyx2012.horizontalpicker.DatePickerListener;
 import com.github.jhonnyx2012.horizontalpicker.HorizontalPicker;
 import com.minimalsoft.smsmx.MainAdapter;
 import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
-import com.minimalsoft.smsmx.Presenters.MainActivityPresenter;
-import com.minimalsoft.smsmx.Presenters.MainActivityPresenterI;
+import com.minimalsoft.smsmx.Presenters.MainPresenter;
+import com.minimalsoft.smsmx.Presenters.MainPresenterI;
 import com.minimalsoft.smsmx.R;
 
 import org.joda.time.DateTime;
@@ -20,9 +19,9 @@ import org.joda.time.DateTime;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements MainActivityI {
+public class MainActivity extends BaseActivity implements MainActivityI {
 
-    MainActivityPresenterI mainActivityPresenter;
+    MainPresenterI mainActivityPresenter;
     RecyclerView mainRv;
     SwipeRefreshLayout swipeRefreshLayout;
 //    DatePickerTimeline timeline;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityI {
 
         setContentView(R.layout.activity_main);
 
-        mainActivityPresenter = new MainActivityPresenter(this);
+        mainActivityPresenter = new MainPresenter(this);
 
         txtSent = findViewById(R.id.txt_sent);
         txtAlert = findViewById(R.id.txt_alert);
@@ -71,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityI {
             }
         })
                 .init();
+
+        calendar.setDate(new DateTime());
 
 //        timeline = findViewById(R.id.calendar);
 //        timeline.centerOnSelection();
@@ -119,12 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityI {
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
+    public void onUpdateSMSListFailed(String error) {
 
     }
 

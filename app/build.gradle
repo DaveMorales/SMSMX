@@ -11,7 +11,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.minimalsoft.smsmx"
         minSdkVersion 21
@@ -20,7 +20,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [onesignal_app_id: "ea8b1767-8bc8-4bea-a288-094415145524",
+        manifestPlaceholders = [onesignal_app_id               : "ea8b1767-8bc8-4bea-a288-094415145524",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
     }
@@ -32,12 +32,11 @@ android {
     }
 
 
-
-
 }
 
 dependencies {
 
+    implementation 'com.android.support:design:26.1.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -51,12 +50,16 @@ dependencies {
 
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     compile 'com.onesignal:OneSignal:3.7.1'
+
     compile 'com.github.jhonnyx2012:horizontal-picker:1.0.6'
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-//    compile 'com.google.code.gson:gson:2.8.2'
+
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
     testCompile 'junit:junit:4.12'
 }

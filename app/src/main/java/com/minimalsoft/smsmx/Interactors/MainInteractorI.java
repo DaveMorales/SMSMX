@@ -6,7 +6,7 @@ import com.minimalsoft.smsmx.Models.responses.SendMessageResponse;
  * Created by David Morales on 11/1/17.
  */
 
-public interface MainActivityInteractorI {
+public interface MainInteractorI {
 
     void sendSMS(SendMessageResponse.Message message);
 

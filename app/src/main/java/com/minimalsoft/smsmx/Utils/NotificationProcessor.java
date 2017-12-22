@@ -3,8 +3,8 @@ package com.minimalsoft.smsmx.Utils;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.minimalsoft.smsmx.Interactors.MainActivityInteractor;
-import com.minimalsoft.smsmx.Interactors.MainActivityInteractorI;
+import com.minimalsoft.smsmx.Interactors.MainInteractor;
+import com.minimalsoft.smsmx.Interactors.MainInteractorI;
 import com.minimalsoft.smsmx.Models.responses.SendMessageResponse;
 import com.onesignal.NotificationExtenderService;
 import com.onesignal.OSNotificationReceivedResult;
@@ -22,12 +22,12 @@ public class NotificationProcessor extends NotificationExtenderService {
     private final String TAG = getClass().getSimpleName();
 
 
-    MainActivityInteractorI mainActivityInteractor;
+    MainInteractorI mainActivityInteractor;
 
     @Override
     protected boolean onNotificationProcessing(OSNotificationReceivedResult notification) {
 
-        mainActivityInteractor = new MainActivityInteractor();
+        mainActivityInteractor = new MainInteractor();
 
         Gson gson = new Gson();
         SendMessageResponse response = gson.fromJson(notification.payload.additionalData.toString(), SendMessageResponse.class);

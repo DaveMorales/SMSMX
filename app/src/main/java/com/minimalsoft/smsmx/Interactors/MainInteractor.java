@@ -11,12 +11,13 @@ import android.telephony.SmsManager;
 import android.util.Log;
 
 import com.minimalsoft.smsmx.Application;
-import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
-import com.minimalsoft.smsmx.Utils.SMStatus;
 import com.minimalsoft.smsmx.Models.requests.StatusRequest;
+import com.minimalsoft.smsmx.Models.responses.MessageListResponse;
+import com.minimalsoft.smsmx.Models.responses.SendMessageResponse;
 import com.minimalsoft.smsmx.Models.responses.StatusResponse;
-import com.minimalsoft.smsmx.Presenters.MainActivityPresenter;
-import com.minimalsoft.smsmx.Presenters.MainActivityPresenterI;
+import com.minimalsoft.smsmx.Presenters.MainPresenter;
+import com.minimalsoft.smsmx.Presenters.MainPresenterI;
+import com.minimalsoft.smsmx.Utils.SMStatus;
 import com.minimalsoft.smsmx.Utils.WServices;
 
 import retrofit2.Call;
@@ -27,26 +28,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.app.PendingIntent.FLAG_ONE_SHOT;
-import static com.minimalsoft.smsmx.Utils.StaticVars.BASE_URL;
+import static com.minimalsoft.smsmx.Utils.Constants.BASE_URL;
 
 /**
  * Created by David Morales on 11/1/17.
  */
 
-public class MainActivityInteractor implements MainActivityInteractorI {
+public class MainInteractor implements MainInteractorI {
 
     private final String TAG = "SMS_MX";
 
     private String SENT = "SMS_SENT";
     private String DELIVERED = "SMS_DELIVERED";
 
-    private MainActivityPresenterI mainActivityPresenter;
+    private MainPresenterI mainActivityPresenter;
 
-    public MainActivityInteractor(MainActivityPresenter mainActivityPresenter) {
-        this.mainActivityPresenter = mainActivityPresenter;
+    public MainInteractor(MainPresenter mainPresenter) {
+        this.mainActivityPresenter = mainPresenter;
     }
 
-    public MainActivityInteractor() {
+    public MainInteractor() {
     }
 
     private void setListeners() {
@@ -172,7 +173,7 @@ public class MainActivityInteractor implements MainActivityInteractorI {
     }
 
     @Override
-    public void sendSMS(Message message) {
+    public void sendSMS(SendMessageResponse.Message message) {
 
         Log.e(TAG + " " + message.getId() + ": ", "Message to: " + message.getNumber() + " id: " + message.getId());
 
